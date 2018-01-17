@@ -1,5 +1,7 @@
 <?php 
 
+/* Autoloader */
+
 function autoloader($classe)
 {
     require $classe . '.class.php';
