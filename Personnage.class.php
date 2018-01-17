@@ -117,14 +117,19 @@ class Personnage {
     {
         $this->degat = $degat;
     }
-
+    
+    public function recevoirDegats($force)
+    {
+        $this->degat += $force;
+    }
+  
     public function frapper($persoAFrapper)
     {
         $persoAFrapper->degat = $this->power + $persoAFrapper->degat;
         $this->experience();
     }
     
-    public function experience()
+    public function gagnerExperience()
     {
         $this->exp = $this->exp + 1;
     }
