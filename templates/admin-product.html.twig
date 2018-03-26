@@ -1,0 +1,71 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+				<li class="active">Create Product</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+			{{ form_start(form, {'attr': {'class': 'clearfix'}}) }}
+			<!--  <form id="checkout-form" class="clearfix"> -->
+					<div class="col-md-6">
+						<div class="billing-details">
+							<p>Already a customer ? <a href="#">Login</a></p>
+							<div class="section-title">
+								<h3 class="title">Create your account</h3>
+							</div>
+							<div class="form-group">
+								{{ form_widget(form.username, {'attr': {'class': 'input', 'placeholder': 'First Name'}}) }}
+						<!--  		<input class="input" type="text" name="first-name" placeholder="First Name">-->
+							</div>
+							
+							<div class="form-group">
+								{{ form_widget(form.email, {'attr': {'class': 'input', 'placeholder': 'Email'}}) }}
+							<!--  	<input class="input" type="email" name="email" placeholder="Email"> -->
+							</div>
+							
+							
+							<div class="form-group">
+								<div class="input-checkbox">
+									<input type="checkbox" id="register">
+									<label class="font-weak" for="register">Create Account?</label>
+									<div class="caption">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+											<p>
+											<div class="form-group">
+												{{ form_widget(form.plainPassword.first, {'attr': {'class': 'input', 'placeholder': 'Enter Your Password'}}) }}
+												
+											</div>
+											<div class="form-group">
+												{{ form_widget(form.plainPassword.second, {'attr': {'class': 'input', 'placeholder': 'Confirm Your Password'}}) }}
+											<!--  	<input class="input" type="password" name="password" placeholder="Enter Your Password">-->
+											</div>	
+												
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="pull-right">
+								<button class="primary-btn">Submit</button>
+						</div>
+					</div>
+				{{ form_end(form) }}					
+			<!--  	</form> -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+{% endblock %}

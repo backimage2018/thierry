@@ -1,0 +1,34 @@
+<div class="product product-single">
+									<div class="product-thumb">
+									
+										
+    										<div class="product-label">
+    		                        {% if product.new is defined %}<span>{{ product.new }}</span>{% endif %}	
+    								{% if product.reduction is defined %}<span class="sale">{{ product.reduction }}</span>{% endif %}	
+											</div>
+										
+									
+										
+										
+										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+									<!--  	<img src="img/{{ product.image.url }}" alt="">-->
+										<img src="{{ asset('img/' ~ product.image.url )}}" alt="">
+								
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">${{ product.price }} <del class="product-old-price">${{ product.oldprice }}</del></h3>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o empty"></i>
+										</div>
+										<h2 class="product-name"><a href="/product/{{ product.id }}">{{ product.name }}</a></h2>
+										<div class="product-btns">
+											<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+											<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+											<button class="primary-btn add-to-cart" id="{{ product.id }}" onclick="addProductQuantity(this, 1);"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+										</div>
+									</div>
+								</div>

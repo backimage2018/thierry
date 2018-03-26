@@ -1,0 +1,38 @@
+<!-- Cart -->
+
+					<li id="cart-ajax" class="header-cart dropdown default-dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+								<div class="header-btns-icon">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="qty" id="qty-product-caddie">{{ caddie|length }}</span>
+								</div>
+								<strong class="text-uppercase">My Cart:</strong>
+								<br>
+								<span>{{ total_caddie }}$</span>
+							</a>
+							<div class="custom-menu">
+								<div id="shopping-cart">
+									<div class="shopping-cart-list">
+									
+									{% for item_caddie in caddie %}
+										<div class="product product-widget">
+											<div class="product-thumb">
+												<img src="/img/{{ item_caddie.product.image.url}}" alt="">
+											</div>
+											<div class="product-body">
+												<h3 class="product-price">${{ item_caddie.product.price}} <span class="qty">x{{ item_caddie.quantity}}</span></h3>
+												<h2 class="product-name"><a href="#">{{ item_caddie.product.name}}</a></h2>
+											</div>
+											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
+										</div>
+									{% endfor %}	
+								
+									</div>
+									<div class="shopping-cart-btns">
+										<button class="main-btn">View Cart</button>
+										<button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+									</div>
+								</div>
+							</div>
+						</li>
+						<!-- /Cart -->

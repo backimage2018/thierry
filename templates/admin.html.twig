@@ -1,0 +1,115 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+				<li class="active">Create Account</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+		{% if form_product is defined %} 
+			<!-- row -->
+			<div class="row"> 
+			<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">Create Product</h2>
+					</div>
+				</div>
+			
+			{{ form_start(form_product, {'attr': {'class': 'clearfix'}}) }}
+					<div class="col-md-4">
+						<div class="billing-details">
+							
+							<div class="form-group">
+							    
+								{{ form_widget(form_product.name, {'attr': {'class': 'input', 'placeholder': 'Product Name'}}) }}
+						<!--  		<input class="input" type="text" name="first-name" placeholder="First Name">-->
+							</div>
+							<div class="form-group">
+								{{ form_widget(form_product.category, {'attr': {'class': 'input', 'placeholder': 'Category'}}) }}
+							</div>
+							
+							<div class="form-group">
+								{{ form_widget(form_product.price, {'attr': {'class': 'input', 'placeholder': 'Price'}}) }}
+							</div>
+							
+							<div class="form-group">
+								{{ form_widget(form_product.oldprice, {'attr': {'class': 'input', 'placeholder': 'Oldprice'}}) }}
+							</div>
+							
+							<div class="form-group">
+								{{ form_widget(form_product.reduction, {'attr': {'class': 'input', 'placeholder': 'Reduction'}}) }}
+							</div>
+							
+							<div class="form-group">
+								{{ form_widget(form_product.description, {'attr': {'class': 'input', 'placeholder': 'Description'}}) }}
+							</div>
+							
+							<div class="form-group">
+								{{ form_widget(form_product.collection, {'attr': {'class': 'input', 'placeholder': 'Collection'}}) }}
+							</div>
+							
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="shiping-methods">
+								<div class="form-group">
+    								{{ form_widget(form_product.color, {'attr': {'class': 'input', 'placeholder': 'Color'}}) }}
+    							</div>
+    							<div class="form-group">
+    								{{ form_widget(form_product.size, {'attr': {'class': 'input', 'placeholder': 'Size'}}) }}
+    							</div>
+    							<div class="form-group">
+    								{{ form_widget(form_product.brand, {'attr': {'class': 'input', 'placeholder': 'Brand'}}) }}
+    							</div>
+    							<div class="form-group">
+    								{{ form_widget(form_product.genre, {'attr': {'class': 'input'}}) }}
+    							</div>
+    							<div class="form-group">
+    								{{ form_widget(form_product.new, {'attr': {'class': 'input', 'placeholder': 'New'}}) }}
+    							</div>
+    							<div class="form-group">
+    								{{ form_widget(form_product.availability, {'attr': {'class': 'input' }}) }}
+    							</div>
+    					</div>
+					</div>
+					
+					<div class="col-md-4">
+						<div class="shiping-methods">
+								<div class="form-group">
+    								{{ form_widget(form_product.image) }}
+    							</div>
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="order-summary clearfix">
+							<div class="pull-right">
+								<button type="submit" class="primary-btn">Create</button>
+							</div>
+							
+						</div>
+
+					</div>
+					{{ form_end(form_product) }}
+		<!--  	</form> -->	
+			</div>
+			<!-- /row -->
+			{% endif %}
+		
+			
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+{% endblock %}
