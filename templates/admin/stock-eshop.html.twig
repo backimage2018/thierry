@@ -1,0 +1,44 @@
+{% extends "admin/dashboard.html.twig" %}
+{% block body %}
+            
+                       
+                        <div class="col-md-8">
+                            <div class="card card-plain">
+                                <div class="card-header" data-background-color="purple">
+                                    <h4 class="title">Stock de la boutique</h4>
+                                    <p class="category">Here is a subtitle for this table</p>
+                                </div>
+                                <div class="card-content table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Color</th>
+                                            <th>Brand</th>
+                                            <th>Availability</th>
+                                            <th>Category</th>
+                                            <th>Select</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Dakota Rice</td>
+                                                <td>$36,738</td>
+                                                <td>Black</td>
+                                                <td>Nike</td>
+                                                <td>Oui</td>
+                                                <td>Clothings</td>
+                                                <td><input name="select-product" type="radio"</td>
+                                            </tr>
+                                         </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        
+                        
+                        
+                        </div>
+{% endblock %}

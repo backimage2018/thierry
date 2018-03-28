@@ -1,0 +1,45 @@
+{% extends "admin/dashboard.html.twig" %}
+{% block body %}
+            
+                       
+                         <div class="col-md-8">
+                            <div class="card card-plain">
+                                <div class="card-header" data-background-color="purple">
+                                    <h4 class="title">Stock de l'entrepôt</h4>
+                                    <p class="category">Here is a subtitle for this table</p>
+                                </div>
+                                <div class="card-content table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Brand</th>
+                                            <th>Availability</th>
+                                            <th>Category</th>
+                                            <th>Select</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                            {% for product in products %}
+                                                <td>{{ product.id }}</td>
+                                                <td>{{ product.name }}</td>
+                                                <td>{{ product.price }}</td>
+                                                <td>{{ product.brand }}</td>
+                                                <td>{{ product.availability }}</td>
+                                                <td>{{ product.category }}</td>
+                                                
+                                                <td><input name="select-product" type="radio"</td>
+                                            {% endfor %}    
+                                            </tr>
+                                         </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        
+                        
+                        
+                        </div>
+{% endblock %}

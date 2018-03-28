@@ -1,7 +1,7 @@
 <!-- Order Review -->
 
 					<div class="col-md-12">
-						<div class="order-summary clearfix">
+						<div class="order-summary clearfix" id="tab-order-review">
 							<div class="section-title">
 								<h3 class="title">Order Review</h3>
 							</div>
@@ -16,7 +16,7 @@
 										<th class="text-right"></th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="tab-order-review">
 								
 				                {% for item_caddie in caddie %}
 									<tr>
@@ -29,7 +29,7 @@
 											</ul>
 										</td>
 										<td class="price text-center"><strong>{{ item_caddie.product.price}}</strong><br><del class="font-weak"><small>{{ item_caddie.product.oldprice}}</small></del></td>
-										<td class="qty text-center"><input class="input" name="{{ item_caddie.product.id}}" type="number" value="{{ item_caddie.quantity}}"></td>
+										<td class="qty text-center"><input class="input" id="{{ item_caddie.product.id}}" name="{{ item_caddie.product.id}}" type="number" min="1" value="{{ item_caddie.quantity}}" onchange="updateProductQuantity(this, this.value);"></td>
 										<td class="total text-center"><strong class="primary-color">{{ item_caddie.total}}</strong></td>
 										<td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
 									</tr>

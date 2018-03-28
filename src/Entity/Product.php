@@ -93,11 +93,6 @@ class Product
     private $genre;
     
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $countdowndate;
-    
-    /**
      * @ORM\OneToMany (targetEntity="App\Entity\Review", mappedBy="product", cascade={"persist"})
      */
     private $reviews;
@@ -107,6 +102,27 @@ class Product
      */
     private $caddies;
     
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $quantity;
+    
+    /**
+     * @return mixed
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * @param mixed $quantity
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+    }
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
@@ -161,22 +177,6 @@ class Product
     public function setImage($image)
     {
         $this->image = $image;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCountdowndate()
-    {
-        return $this->countdowndate;
-    }
-
-    /**
-     * @param mixed $countdowndate
-     */
-    public function setCountdowndate($countdowndate)
-    {
-        $this->countdowndate = $countdowndate;
     }
 
     /**

@@ -103,7 +103,7 @@
 							<div class="product-btns">
 								<div class="qty-input">
 									<span class="text-uppercase">QTY: </span>
-									<input class="input" id="product-qty" name="product-qty" type="number">
+									<input class="input" id="product-qty" name="product-qty" type="number" value="1" min="1">
 								</div>
 								<button class="primary-btn add-to-cart" id="{{ product.id }}" onclick="addProductQuantity(this, document.getElementById('product-qty').value)"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 								<div class="pull-right">

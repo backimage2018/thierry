@@ -24,9 +24,6 @@ class NewsletterController extends Controller
         $em->persist($newsletter);
         $em->flush();
         
-     //   $result['message'] = 'Vous êtes bien inscrit à la newsletter';
-     //   $result['email'] = $newsletter->getEmail();
-        
         $result = array (
             'message' => 'Vous êtes bien inscrit à la newsletter',
             'email'   => $newsletter->getEmail()

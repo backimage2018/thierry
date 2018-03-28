@@ -8,16 +8,15 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20180321125241 extends AbstractMigration
+class Version20180328093553 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE caddie ADD user_id BIGINT DEFAULT NULL');
-        $this->addSql('ALTER TABLE caddie ADD CONSTRAINT FK_E98DC43BA76ED395 FOREIGN KEY (user_id) REFERENCES app_users (id)');
-        $this->addSql('CREATE INDEX IDX_E98DC43BA76ED395 ON caddie (user_id)');
+        $this->addSql('CREATE TABLE store (id INT AUTO_INCREMENT NOT NULL, product_id INT DEFAULT NULL, quantity INT NOT NULL, UNIQUE INDEX UNIQ_FF5758774584665A (product_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE store ADD CONSTRAINT FK_FF5758774584665A FOREIGN KEY (product_id) REFERENCES product (id)');
     }
 
     public function down(Schema $schema)
@@ -25,8 +24,6 @@ class Version20180321125241 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE caddie DROP FOREIGN KEY FK_E98DC43BA76ED395');
-        $this->addSql('DROP INDEX IDX_E98DC43BA76ED395 ON caddie');
-        $this->addSql('ALTER TABLE caddie DROP user_id');
+        $this->addSql('DROP TABLE store');
     }
 }

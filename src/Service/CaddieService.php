@@ -11,8 +11,8 @@ class CaddieService
         foreach ($caddie as $row)
         {
             
-            $totalCaddie += $row->getTotal();
-            
+          $totalCaddie += $row->getTotal();
+           
         }
         
         return $totalCaddie;

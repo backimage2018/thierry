@@ -74,14 +74,23 @@ class ProductController extends Controller
     }
     
     /**
-     * @Route("/admin/add", name="admin")
+     * @Route("/shop/add", name="admin")
      */
     
     public function registerAction(Request $request, FileUploader $fileUploader, CaddieService $CaddieService) {
         
         $product = new Product();
         $image = new Image();
+        
+        $id_user = $this->getUser();
+        $caddie = $this->getDoctrine()
+        ->getRepository(Caddie::class)
+        ->findBy(['user' => $id_user]);
+        
+        $totalCaddie = $CaddieService->totalCaddie($caddie);
+        
         $form = $this->createForm(ProductType::class, $product);
+        
         
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -105,6 +114,8 @@ class ProductController extends Controller
         
         return $this->render(
             'admin.html.twig',  array('form_product' => $form->createView(),
+            'total_caddie' => $totalCaddie,
+            'caddie' => $caddie,
             'categories' => Data::CATEGORIES,
             'nav_categories' => Data::NAV_CATEGORIES,
             'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,
