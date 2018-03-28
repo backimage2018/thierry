@@ -29,7 +29,27 @@ class CaddieController extends Controller
         $id_user = $this->getUser()->getId();
         $user = $this->getUser();
         
-   /*   test si le produit pour l'user est déjà présent dans le panier  */
+        /* on vérifie d'abord que quantité product suffisante */
+        
+        $product = $this->getDoctrine()
+        ->getRepository(Product::class)
+        ->findOneBy(['id' => $id_product ]);
+        
+        
+        /* On test si la quantité demandé est > à la quantité restante en magasin*/
+        
+        if ($quantity > $product->getQuantity()) {
+            
+            return $this->json(['message' =>  'produit épuisé']);
+            
+        } else {
+            
+            $product->setQuantity($product->getQuantity() - $quantity);
+            
+        }
+        
+        
+        /*   test si le produit pour l'user est déjà présent dans le panier  */
         
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
@@ -38,10 +58,7 @@ class CaddieController extends Controller
             'user' => $id_user,
         ]);
         
-        $product = $this->getDoctrine()
-        ->getRepository(Product::class)
-        ->findOneBy(['id' => $id_product ]);
-        
+
                 if (!$caddie) {
                     
                     $caddie = new Caddie();

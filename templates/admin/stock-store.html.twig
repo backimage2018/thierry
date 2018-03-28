@@ -1,8 +1,7 @@
 {% extends "admin/dashboard.html.twig" %}
 {% block body %}
             
-                       
-                         <div class="col-md-8">
+						<div class="col-md-8">
                             <div class="card card-plain">
                                 <div class="card-header" data-background-color="purple">
                                     <h4 class="title">Stock de l'entrepôt</h4>
@@ -39,7 +38,33 @@
                         </div>
                         <div class="col-md-4">
                         
-                        
+                        <div class="product product-single">
+									<div class="product-thumb">
+											<div class="product-label">
+                		                        <span>NEW</span>
+                								<span class="sale">SOLDE</span>
+											</div>
+											<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+									
+										<img src="{{asset('img/product-67.jpg')}}" alt="">
+								
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">$ PRIX<del class="product-old-price">$ ANCIEN PRIX</del></h3>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o empty"></i>
+										</div>
+										<h2 class="product-name"><a href="/product/1">Nom du Produit</a></h2>
+										<div class="product-btns">
+											<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+											<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+										</div>
+									</div>
+								</div>
                         
                         </div>
 {% endblock %}
