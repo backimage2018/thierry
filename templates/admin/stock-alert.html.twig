@@ -1,0 +1,40 @@
+{% extends "admin/dashboard.html.twig" %}
+
+
+{% block body %}
+
+				<div class="col-md-12">
+                            <div class="card card-plain">
+                                <div class="card-header" data-background-color="purple">
+                                    <h4 class="title">Alerte du stock</h4>
+                                    <p class="category">Here is a subtitle for this table</p>
+                                </div>
+                                <div class="card-content table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        	<th>Id</th>
+                                            <th>Name</th>
+                                            <th>Quantité Restante Entrepôt</th>
+                                            <th>Quantité Restante Magasin</th>
+                                            <th>Ajout Magasin</th>
+                                            <th>Ajout Entrepôt</th>
+                                        </thead>
+                                        <tbody>
+                                        {% for item in stock %}
+                                            <tr>
+                                            	<td>{{ item.product.id}}</td>
+                                            	<td>{{ item.product.name}}</td>
+                                            	<td>{{ item.eshopquantity }}</td>
+                                                <td>{{ item.storequantity }}</td>
+                                                
+                                                <td><input name="select-product" type="input"</td>
+                                                <td><input name="select-product" type="input"</td>
+                                            </tr>
+                                         {% endfor %}  
+                                         </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+{% endblock %}

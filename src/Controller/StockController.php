@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Entity\Image;
 use App\Form\ProductType;
+use App\Entity\Stock;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +13,7 @@ use App\Service\FileUploader;
 use Symfony\Component\HttpFoundation\File\File;
 
 
-class DashboardController extends Controller
+class StockController extends Controller
 {
     
     /**
@@ -31,12 +32,12 @@ class DashboardController extends Controller
     public function eshopDashboard()
     {
         
-        $products = $this->getDoctrine()
-        ->getRepository(Product::class)
-        ->findAll();
+        $stock = $this->getDoctrine()
+        ->getRepository(Stock::class)
+        ->loadProductsEshop();
         
         return $this->render('admin/stock-eshop.html.twig', array(
-            'products' => $products));
+            'stock' => $stock));
         
     }
     
@@ -46,11 +47,12 @@ class DashboardController extends Controller
     public function storeDashboard()
     {
         
-        $products = $this->getDoctrine()
-        ->getRepository(Product::class)
-        ->findAll();
+        $stock = $this->getDoctrine()
+        ->getRepository(Stock::class)
+        ->loadProductsStore();
         
-        return $this->render('admin/stock-store.html.twig', array('products' => $products));
+        return $this->render('admin/stock-store.html.twig', array(
+            'stock' => $stock));
         
     }
     
@@ -63,12 +65,6 @@ class DashboardController extends Controller
         $product = new Product();
         $image = new Image();
         
-     /*   $id_user = $this->getUser();
-        $caddie = $this->getDoctrine()
-        ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);
-        
-        $totalCaddie = $CaddieService->totalCaddie($caddie); */
         
         $form = $this->createForm(ProductType::class, $product);
         
@@ -96,6 +92,23 @@ class DashboardController extends Controller
         return $this->render(
             'admin/create-product.html.twig',
             array('form_product' => $form->createView()));
+    }
+    
+    
+    /**
+     * @Route("/dashboard/stock-alert", name="stock-alert")
+     */
+    public function alertStock()
+    {
+        
+        $stock = $this->getDoctrine()
+        ->getRepository(Stock::class)
+        ->loadProductsInAlert();
+        
+             
+        
+        return $this->render('admin/stock-alert.html.twig', array('stock' => $stock));
+        
     }
     
 }

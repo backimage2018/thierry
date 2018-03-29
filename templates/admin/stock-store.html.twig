@@ -1,10 +1,9 @@
 {% extends "admin/dashboard.html.twig" %}
 {% block body %}
-            
-						<div class="col-md-8">
+            <div class="col-md-8">
                             <div class="card card-plain">
                                 <div class="card-header" data-background-color="purple">
-                                    <h4 class="title">Stock de l'entrepôt</h4>
+                                    <h4 class="title">Stock de l'Entrepôt</h4>
                                     <p class="category">Here is a subtitle for this table</p>
                                 </div>
                                 <div class="card-content table-responsive">
@@ -13,24 +12,23 @@
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Price</th>
-                                            <th>Brand</th>
-                                            <th>Availability</th>
+                                            <th>Quantité dans L'entrepôt</th>
                                             <th>Category</th>
                                             <th>Select</th>
                                         </thead>
                                         <tbody>
+                                        
+                                        {% for item in stock %}
                                             <tr>
-                                            {% for product in products %}
-                                                <td>{{ product.id }}</td>
-                                                <td>{{ product.name }}</td>
-                                                <td>{{ product.price }}</td>
-                                                <td>{{ product.brand }}</td>
-                                                <td>{{ product.availability }}</td>
-                                                <td>{{ product.category }}</td>
-                                                
+                                            	<td>{{ item.product.id}}</td>
+                                            	<td>{{ item.product.name}}</td>
+                                            	<td>{{ item.product.price }}</td>
+                                                <td><b>{{ item.storequantity }}</b></td>
+                                                <td>{{ item.product.category }}</td>
                                                 <td><input name="select-product" type="radio"</td>
-                                            {% endfor %}    
                                             </tr>
+                                         {% endfor %} 
+                                           
                                          </tbody>
                                     </table>
                                 </div>
@@ -38,7 +36,7 @@
                         </div>
                         <div class="col-md-4">
                         
-                        <div class="product product-single">
+                        		<div class="product product-single">
 									<div class="product-thumb">
 											<div class="product-label">
                 		                        <span>NEW</span>

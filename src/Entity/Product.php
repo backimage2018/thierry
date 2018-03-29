@@ -102,27 +102,6 @@ class Product
      */
     private $caddies;
     
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $quantity;
-    
-    /**
-     * @return mixed
-     */
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
-
-    /**
-     * @param mixed $quantity
-     */
-    public function setQuantity($quantity)
-    {
-        $this->quantity = $quantity;
-    }
-
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
