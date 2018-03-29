@@ -46,6 +46,7 @@ class ProductType extends AbstractType
              'Shoes' => 'Shoes'
          )
         ))
+        ->add('stock', StockType::class)
         ->add('image', ImageType::class)
         ->add('reduction',TextType::class)
         ->add('new', TextType::class,array(

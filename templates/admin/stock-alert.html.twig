@@ -16,16 +16,16 @@
                                             <th>Name</th>
                                             <th>Quantité Restante Entrepôt</th>
                                             <th>Quantité Restante Magasin</th>
-                                            <th>Ajout Magasin</th>
                                             <th>Ajout Entrepôt</th>
+                                            <th>Ajout Magasin</th>
                                         </thead>
                                         <tbody>
                                         {% for item in stock %}
                                             <tr>
                                             	<td>{{ item.product.id}}</td>
                                             	<td>{{ item.product.name}}</td>
-                                            	<td>{{ item.eshopquantity }}</td>
-                                                <td>{{ item.storequantity }}</td>
+                                            	<td>{{ item.storequantity }}</td>
+                                                <td>{{ item.eshopquantity }}</td>
                                                 
                                                 <td><input name="select-product" type="input"</td>
                                                 <td><input name="select-product" type="input"</td>

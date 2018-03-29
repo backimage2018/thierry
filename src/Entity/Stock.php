@@ -28,7 +28,7 @@ class Stock
     private $storequantity;
     
     /**
-     * @ORM\OneToOne (targetEntity="App\Entity\Product", cascade={"persist"})
+     * @ORM\OneToOne (targetEntity="App\Entity\Product", mappedBy="stock", cascade={"persist"})
      */
     private $product;
     

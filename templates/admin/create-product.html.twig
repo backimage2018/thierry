@@ -70,8 +70,16 @@
     			<div class="col-md-4">				
     					
 								<div class="form-group">
+    								{{ form_widget(form_product.stock.storequantity, {'attr': {'class': 'input', 'placeholder': 'Stock Entrepôt'}}) }}
+    							</div>
+    							<div class="form-group">
+    								{{ form_widget(form_product.stock.eshopquantity, {'attr': {'class': 'input', 'placeholder': 'Stock Magasin'}}) }}
+    							</div>
+    							<div class="form-group">
     								{{ form_widget(form_product.image) }}
     							</div>
+    							
+    							
     			</div>				
 					
 

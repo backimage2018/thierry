@@ -73,6 +73,11 @@ class Product
     private $image;
     
     /**
+     * @ORM\OneToOne (targetEntity="App\Entity\Stock", inversedBy="product", cascade={"persist"})
+     */
+    private $stock;
+    
+    /**
      * @ORM\Column(type="string", length=64)
      */
     private $reduction;
@@ -102,6 +107,22 @@ class Product
      */
     private $caddies;
     
+    /**
+     * @return mixed
+     */
+    public function getStock()
+    {
+        return $this->stock;
+    }
+
+    /**
+     * @param mixed $stock
+     */
+    public function setStock($stock)
+    {
+        $this->stock = $stock;
+    }
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
