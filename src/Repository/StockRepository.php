@@ -13,6 +13,15 @@ class StockRepository extends ServiceEntityRepository
         parent::__construct($registry, Stock::class);
     }
     
+    public function loadAllProducts()
+    {
+        return $this->createQueryBuilder('s')
+        ->join('s.product', 'p')
+        ->addSelect('p')
+        ->getQuery()
+        ->getArrayResult();
+    }
+    
     public function loadProductsInAlert()
     {
         return $this->createQueryBuilder('s')

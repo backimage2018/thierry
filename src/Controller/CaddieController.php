@@ -38,15 +38,6 @@ class CaddieController extends Controller
         
         /* On test si la quantité demandé est > à la quantité restante en magasin*/
         
-        if ($quantity > $product->getQuantity()) {
-            
-            return $this->json(['message' =>  'produit épuisé']);
-            
-        } else {
-            
-            $product->setQuantity($product->getQuantity() - $quantity);
-            
-        }
         
         
         /*   test si le produit pour l'user est déjà présent dans le panier  */
@@ -87,7 +78,7 @@ class CaddieController extends Controller
         ->getRepository(Caddie::class)
         ->loadProductInCaddie($id_user);
         
-       // $caddie['totalcaddie'] = $CaddieService->totalCaddie($caddie);
+        $totalcaddie = $CaddieService->totalCaddie($caddie);
         
    /*     $encoders = new JsonEncoder();
         $normalizers = new ObjectNormalizer();
@@ -101,7 +92,13 @@ class CaddieController extends Controller
         
        // return new Response($caddie);
        
-        return $this->json(['caddie' =>  $caddie]);
+        $caddie = array (
+            'items' => $caddie,
+            'total-caddie' => $totalcaddie
+        );
+     
+     
+        return $this->json($caddie);
     }
     
     

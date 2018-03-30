@@ -21,8 +21,12 @@ class StockController extends Controller
      */
     public function homeDashboard()
     {
+        $stock = $this->getDoctrine()
+        ->getRepository(Stock::class)
+        ->loadAllProducts();
         
-        return $this->render('admin/dashboard.html.twig');
+        return $this->render('admin/index.html.twig', array(
+            'stock' => $stock));
         
     }
     
@@ -65,7 +69,6 @@ class StockController extends Controller
         $product = new Product();
         $image = new Image();
         
-        
         $form = $this->createForm(ProductType::class, $product);
         
         
@@ -104,8 +107,6 @@ class StockController extends Controller
         $stock = $this->getDoctrine()
         ->getRepository(Stock::class)
         ->loadProductsInAlert();
-        
-             
         
         return $this->render('admin/stock-alert.html.twig', array('stock' => $stock));
         

@@ -6,16 +6,16 @@ class CaddieService
     
     public function totalCaddie($caddie)
     {
-        $totalCaddie = 0;
+        $totalcaddie = 0;
         
         foreach ($caddie as $row)
         {
             
-          $totalCaddie += $row->getTotal();
+          $totalcaddie += $row['total'];
            
         }
         
-        return $totalCaddie;
+        return number_format($totalcaddie, 2, '.', '');
     }
     
 }

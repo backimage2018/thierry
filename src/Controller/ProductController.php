@@ -49,14 +49,15 @@ class ProductController extends Controller
         ->findRandomProducts();
         
         $id_user = $this->getUser();
+        
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);
+        ->loadProductInCaddie($id_user);
         
-        $totalCaddie = $CaddieService->totalCaddie($caddie);
+        $totalcaddie = $CaddieService->totalCaddie($caddie);
         
         return $this->render("index.html.twig", array ('dealproducts' => json_decode(Data::DEALPRODUCTS),
-            'total_caddie' => $totalCaddie,
+            'totalcaddie' => $totalcaddie,
             'caddie' => $caddie,
             'pickedproducts' => $pickedproducts,
             'lastproducts' => $lastproducts,

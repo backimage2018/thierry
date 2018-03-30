@@ -91,12 +91,10 @@ function addProductQuantity(param, quantity) {
 	})
 	.done(function (response, textStatus, jqXHR) {
 		
-		// let caddieObjet = JSON.parse(response);
-		// let countCaddie = Object.keys(caddieObjet).length -1;
 		
-		let caddie = response;
+		let countItems = response['items'].length;
 		
-		console.log(caddie[0].quantity);
+		console.log(countItems);
 	 	
 	 	let newContentCaddieHeader = '<li id="cart-ajax" class="header-cart dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">';
 		newContentCaddieHeader += '<div class="header-btns-icon"><i class="fa fa-shopping-cart"></i><span class="qty" id="qty-product-caddie"></span></div>';
@@ -105,13 +103,13 @@ function addProductQuantity(param, quantity) {
 		
 		let newContentCaddieBody = '';
 		
-		for (  i = 0;  i < response.length; i++) {
+		for (  i = 0;  i < countItems; i++) {
 			
 		newContentCaddieBody += '<div class="product product-widget">';
-		newContentCaddieBody += '<div class="product-thumb"><img src="/img/' + caddie[i].product.image.url + '" alt=""></div>';
+		newContentCaddieBody += '<div class="product-thumb"><img src="/img/' + response['items'][i].product.image.url + '" alt=""></div>';
 		newContentCaddieBody += '<div class="product-body">';
-		newContentCaddieBody += '<h3 class="product-price">$' + caddie[i].product.price + ' <span class="qty">x' + caddie[i].quantity +'</span></h3>';
-		newContentCaddieBody += '<h2 class="product-name"><a href="/product/' + caddie[i].product.id + '">' + caddie.product.name + '</a></h2>';
+		newContentCaddieBody += '<h3 class="product-price">$' + response['items'][i].product.price + ' <span class="qty">x' + response['items'][i].quantity +'</span></h3>';
+		newContentCaddieBody += '<h2 class="product-name"><a href="/product/' + response['items'][i].product.id + '">' + response['items'][i].product.name + '</a></h2>';
 		newContentCaddieBody += '</div><button class="cancel-btn"><i class="fa fa-trash"></i></button></div>';
 		
 		}
@@ -121,7 +119,7 @@ function addProductQuantity(param, quantity) {
 		result = newContentCaddieHeader + newContentCaddieBody + newContentCaddieFooter;
 		
 		$('#cart-ajax').html(newContentCaddieHeader + newContentCaddieBody + newContentCaddieFooter);
-		$("#qty-product-caddie").html(caddie.length);
+		$("#qty-product-caddie").html(countItems);
 		
 		
 		
