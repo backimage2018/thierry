@@ -165,9 +165,7 @@ class StockController extends Controller
             'id' => $id_stock,
         ]);
         
-        // $test = $stock->getStorequantity();
-        
-        /* Vérifier si quantity Store n'est < à quantityShop */
+         /* Vérifier si quantity Store est < à quantityShop */
         
         if ($quantityShop <= $stock->getStorequantity()) {
             

@@ -49,10 +49,6 @@ class CaddieController extends Controller
             
             $product->getStock()->setEshopquantity($product->getStock()->getEshopquantity() - $quantity);
             
-      /*      $em = $this->getDoctrine()->getManager();
-            $em->persist($product);
-            $em->flush(); */
-            
         }
         
         /* Mettre à jour la table stock du magasin*/

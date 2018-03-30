@@ -1,10 +1,9 @@
 {% extends "admin/base.html.twig" %}
 {% block body %}
-            <div class="col-md-8">
+					<div class="col-md-8">
                             <div class="card card-plain">
                                 <div class="card-header" data-background-color="purple">
                                     <h4 class="title">Stock de l'Entrepôt</h4>
-                                    <p class="category">Here is a subtitle for this table</p>
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table table-hover">
@@ -12,7 +11,7 @@
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Price</th>
-                                            <th>Quantité dans L'entrepôt</th>
+                                            <th class="text-center">Quantité Entrepôt</th>
                                             <th>Category</th>
                                             <th>Select</th>
                                         </thead>
@@ -23,9 +22,9 @@
                                             	<td>{{ item.product.id}}</td>
                                             	<td>{{ item.product.name}}</td>
                                             	<td>{{ item.product.price }}</td>
-                                                <td><b>{{ item.storequantity }}</b></td>
+                                                <td class="text-center"><b>{{ item.storequantity }}</b></td>
                                                 <td>{{ item.product.category }}</td>
-                                                <td><input name="select-product" type="radio"</td>
+                                                <td><input name="select-product" type="radio" value="{{ item.product.id}}" onclick="displayProduct(this.value);"></td>
                                             </tr>
                                          {% endfor %} 
                                            
@@ -36,7 +35,13 @@
                         </div>
                         <div class="col-md-4">
                         
-                        		<div class="product product-single">
+                        <div id="picture-product"></div>
+                        
+                        
+                        </div>
+                       
+                        
+           <!--              		<div class="product product-single">
 									<div class="product-thumb">
 											<div class="product-label">
                 		                        <span>NEW</span>
@@ -62,7 +67,7 @@
 											<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
 										</div>
 									</div>
-								</div>
+								</div>--> 
                         
                         </div>
 {% endblock %}

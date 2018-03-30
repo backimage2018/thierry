@@ -415,4 +415,20 @@ class ProductController extends Controller
             ));
         
     }
+    
+    /**
+     * @Route("/product/display")
+     */
+    public function displayProduct(Request $request)
+    {
+        
+        $id = $request->request->get('id');
+        
+        $detailproduct = $this->getDoctrine()
+        ->getRepository(Product::class)
+        ->loadProductAndImageById($id);
+        
+        return $this->json($detailproduct);
+        
+    }
 }

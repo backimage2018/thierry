@@ -52,6 +52,17 @@ class ProductRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
     }
+    
+    public function loadProductAndImageById($id)
+    {
+        return $this->createQueryBuilder('p')
+        ->join('p.image', 'i')
+        ->addSelect('i')
+        ->where('p.id = :id')
+        ->setParameter('id', $id)
+        ->getQuery()
+        ->getArrayResult();
+    }
 
     /*
     public function findBySomething($value)
