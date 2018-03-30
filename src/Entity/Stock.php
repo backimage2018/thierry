@@ -32,6 +32,7 @@ class Stock
      */
     private $product;
     
+    
     /**
      * @return mixed
      */

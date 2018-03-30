@@ -27,8 +27,8 @@
                                             	<td>{{ item.storequantity }}</td>
                                                 <td>{{ item.eshopquantity }}</td>
                                                 
-                                                <td><input name="select-product" type="input"</td>
-                                                <td><input name="select-product" type="input"</td>
+                                                <td><input id="input-store-{{ item.id }}" type="input"><button type="button" id="{{ item.id }}" onclick="addQuantityStore(this, document.getElementById('input-store-{{ item.id }}').value);" class="btn btn-primary">Ajouter</button></td>
+                                                <td><input id="input-shop-{{ item.id }}" type="input"><button type="button" id="{{ item.id }}" onclick="addQuantityShop(this, document.getElementById(input-shop-{{ item.id }}).value);" class="btn btn-primary">Ajouter</button></td>
                                             </tr>
                                          {% endfor %}  
                                          </tbody>

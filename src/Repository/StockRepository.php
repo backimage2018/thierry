@@ -55,6 +55,17 @@ class StockRepository extends ServiceEntityRepository
         ->getArrayResult();
     }
     
+    public function loadRowStore($id_stock)
+    {
+        return $this->createQueryBuilder('s')
+        ->join('s.product', 'p')
+        ->addSelect('p')
+        ->where('s.id = :id')
+        ->setParameter('id', $id_stock)
+        ->getQuery()
+        ->getArrayResult();
+    }
+    
 
     /*
     public function findBySomething($value)

@@ -112,4 +112,34 @@ class StockController extends Controller
         
     }
     
+    /**
+     * @Route("/dashboard/stock/add", name="stock-add")
+     */
+    public function updateStoreStock(Request $request)
+    {
+        
+        $id_stock = $request->request->get('id');
+        $quantityStore = $request->request->get('quantityStore');
+        
+        /* On récupère la ligne du stock à modifier */
+        $stock = $this->getDoctrine()
+        ->getRepository(Stock::class)
+        ->findOneBy([
+            'id' => $id_stock,
+        ]);
+        
+        $stock->setStorequantity(($stock->getStorequantity() + $quantityStore));
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($stock);
+        $em->flush();
+        
+        $stock = $this->getDoctrine()
+        ->getRepository(Stock::class)
+        ->loadProductsInAlert();
+        
+        return $this->json($stock);
+        
+    }
+    
 }
