@@ -27,6 +27,8 @@ class StockRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('s')
         ->join('s.product', 'p')
         ->addSelect('p')
+        ->join('p.image', 'i')
+        ->addSelect('i')
         ->where('s.eshopquantity < :quantity OR s.storequantity < :quantity')
         ->setParameter('quantity', 4)
         ->getQuery()

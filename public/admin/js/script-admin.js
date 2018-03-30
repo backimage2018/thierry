@@ -1,9 +1,5 @@
 
-
-
 /*  Ajout stock entrepôt  */
-
-/* Fonction lors de la mise à jour d'un produit dans le panier depuis order-review */
 
 function addQuantityStore(param, quantityStore) {
 	
@@ -17,5 +13,38 @@ function addQuantityStore(param, quantityStore) {
 		
 		console.log('requête reçu');
 	})
+	.fail(function (jqXHR, textStatus, errorThrown) {
+  	  
+  	  console.log('requête KO');
+
+    })
+    .always(function (jqXHR, textStatus, errorThrown) {
+
+    });
+    
+}
+
+/*  Ajout stock dans la boutique  */
+
+function addQuantityShop(param, quantityShop) {
+	
+	
+	$.ajax({
+        type: 'POST',
+        url: '/dashboard/shop/add',
+        data: {id : param.id, quantityShop : quantityShop}
+	})
+	.done(function (response, textStatus, jqXHR) {
+		
+		console.log('requête reçu');
+	})
+	.fail(function (jqXHR, textStatus, errorThrown) {
+  	  
+  	  console.log('requête KO');
+
+    })
+    .always(function (jqXHR, textStatus, errorThrown) {
+
+    });
     
 }

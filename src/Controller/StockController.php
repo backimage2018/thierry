@@ -121,18 +121,73 @@ class StockController extends Controller
         $id_stock = $request->request->get('id');
         $quantityStore = $request->request->get('quantityStore');
         
-        /* On récupère la ligne du stock à modifier */
+        /* Récupère la ligne du stock à modifier */
         $stock = $this->getDoctrine()
         ->getRepository(Stock::class)
         ->findOneBy([
             'id' => $id_stock,
         ]);
         
+        /* Addition avec la nouvelle quantité dans l'instance récupéré */
+        
         $stock->setStorequantity(($stock->getStorequantity() + $quantityStore));
+        
+        /* On persiste le nouvelle objet dans la base */        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($stock);
+        $em->flush();
+        
+        /* On récupére le stock en alerte */
+        
+        $stock = $this->getDoctrine()
+        ->getRepository(Stock::class)
+        ->loadProductsInAlert();
+        
+        return $this->json($stock);
+        
+    }
+    
+    
+    /**
+     * @Route("/dashboard/shop/add", name="shop-add")
+     */
+    public function updateShopStock(Request $request)
+    {
+        
+        $id_stock = $request->request->get('id');
+        $quantityShop = $request->request->get('quantityShop');
+        
+        /* Récupère la ligne du stock à modifier */
+        
+        $stock = $this->getDoctrine()
+        ->getRepository(Stock::class)
+        ->findOneBy([
+            'id' => $id_stock,
+        ]);
+        
+        /* Vérifier si quantity Store n'est < à quantityShop */
+        
+        if ($quantityShop < $stock->getStorequantity()) {
+            
+            $stock->setStorequantity($stock->getStorequantity() - $quantityShop);
+            $stock->setEshopquantity($stock->getEshopquantity() + $quantityShop);
+            
+        } else {
+            
+            
+            $stock = 'Il est possible d\augmenter le stock';
+            
+            return $this->json($stock);
+            
+        }
+        
+        /* On persiste le nouvelle objet dans la base */
         
         $em = $this->getDoctrine()->getManager();
         $em->persist($stock);
         $em->flush();
+        
+        /* On récupére le stock en alerte */
         
         $stock = $this->getDoctrine()
         ->getRepository(Stock::class)

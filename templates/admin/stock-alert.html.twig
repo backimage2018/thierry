@@ -13,9 +13,9 @@
                                     <table class="table table-hover">
                                         <thead>
                                         	<th>Id</th>
-                                            <th>Name</th>
-                                            <th>Quantité Restante Entrepôt</th>
-                                            <th>Quantité Restante Magasin</th>
+                                            <th class="text-center">Name</th>
+                                            <th class="text-center">Quantité Restante Entrepôt</th>
+                                            <th class="text-center">Quantité Restante Magasin</th>
                                             <th>Ajout Entrepôt</th>
                                             <th>Ajout Magasin</th>
                                         </thead>
@@ -24,11 +24,22 @@
                                             <tr>
                                             	<td>{{ item.product.id}}</td>
                                             	<td>{{ item.product.name}}</td>
-                                            	<td>{{ item.storequantity }}</td>
-                                                <td>{{ item.eshopquantity }}</td>
+                                            	
+                                            	<td class="text-center">
+                                            	{% if item.storequantity < 4 %}
+
+                                                       <b>{{ item.storequantity }}</b>
+                                                 {% else %}    
+                                                          {{ item.storequantity }}
+                                                {% endif %}</td>
+                                            	
+                                            	
+                                            	
+                                            	
+                                                <td class="text-center">{{ item.eshopquantity }}</td>
                                                 
                                                 <td><input id="input-store-{{ item.id }}" type="input"><button type="button" id="{{ item.id }}" onclick="addQuantityStore(this, document.getElementById('input-store-{{ item.id }}').value);" class="btn btn-primary">Ajouter</button></td>
-                                                <td><input id="input-shop-{{ item.id }}" type="input"><button type="button" id="{{ item.id }}" onclick="addQuantityShop(this, document.getElementById(input-shop-{{ item.id }}).value);" class="btn btn-primary">Ajouter</button></td>
+                                                <td><input id="input-shop-{{ item.id }}" type="input"><button type="button" id="{{ item.id }}" onclick="addQuantityShop(this, document.getElementById('input-shop-{{ item.id }}').value);" class="btn btn-primary">Ajouter</button></td>
                                             </tr>
                                          {% endfor %}  
                                          </tbody>
