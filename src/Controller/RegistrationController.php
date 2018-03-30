@@ -42,18 +42,20 @@ class RegistrationController extends Controller
             return $this->redirectToRoute('index');
         }
         
+        /* Chargement du caddie en db */
+        
         $id_user = $this->getUser();
         
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);
+        ->loadProductInCaddie($id_user);
         
-        $totalCaddie = $CaddieService->totalCaddie($caddie);
+        $totalcaddie = $CaddieService->totalCaddie($caddie);
         
         return $this->render(
             'account.html.twig',
             array('form' => $form->createView(),'categories' => Data::CATEGORIES,
-                'total_caddie' => $totalCaddie,
+                'totalcaddie' => $totalcaddie,
                 'caddie' => $caddie,
                 'nav_categories' => Data::NAV_CATEGORIES,
                 'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,

@@ -20,16 +20,18 @@ class CheckoutController extends Controller
         var_dump($request->request);
         echo '</pre>';
         
+        /* Chargement du caddie en db */
+        
         $id_user = $this->getUser();
         
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);
+        ->loadProductInCaddie($id_user);
         
-        $totalCaddie = $CaddieService->totalCaddie($caddie);
+        $totalcaddie = $CaddieService->totalCaddie($caddie);
         
         return $this->render("checkout.html.twig", array (
-            'total_caddie' => $totalCaddie,
+            'totalcaddie' => $totalcaddie,
             'caddie' => $caddie,
             'categories' => Data::CATEGORIES,
             'nav_categories' => Data::NAV_CATEGORIES,

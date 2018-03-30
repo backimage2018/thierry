@@ -29,14 +29,18 @@ class CaddieController extends Controller
         $id_user = $this->getUser()->getId();
         $user = $this->getUser();
         
-        /* on vérifie d'abord que quantité product suffisante */
-        
+                
         $product = $this->getDoctrine()
         ->getRepository(Product::class)
         ->findOneBy(['id' => $id_product ]);
         
         
         /* On test si la quantité demandé est > à la quantité restante en magasin*/
+        
+        $test = $product->getStock()->getEshopquantity();
+        
+        
+        /* Mettre à jour la table stock du magasin*/
         
         
         

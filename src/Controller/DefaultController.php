@@ -155,16 +155,18 @@ class DefaultController extends Controller {
     
     public function account(CaddieService $CaddieService) {
         
+        /* Chargement du caddie en db */
+        
         $id_user = $this->getUser();
         
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);
-                
-        $totalCaddie = $CaddieService->totalCaddie($caddie);
+        ->loadProductInCaddie($id_user);
+        
+        $totalcaddie = $CaddieService->totalCaddie($caddie);
         
         return $this->render("account.html.twig", array ('categories' => Data::CATEGORIES,
-            'total_caddie' => $totalCaddie,
+            'totalcaddie' => $totalcaddie,
             'caddie' => $caddie,
             'nav_categories' => Data::NAV_CATEGORIES,
             'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,
@@ -186,16 +188,18 @@ class DefaultController extends Controller {
     
     public function store(CaddieService $CaddieService) {
         
+        /* Chargement du caddie en db */
+        
         $id_user = $this->getUser();
         
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);
+        ->loadProductInCaddie($id_user);
         
-        $totalCaddie = $CaddieService->totalCaddie($caddie);
+        $totalcaddie = $CaddieService->totalCaddie($caddie);
         
         return $this->render("store.html.twig", array ('categories' => Data::CATEGORIES,
-            'total_caddie' => $totalCaddie,
+            'totalcaddie' => $totalcaddie,
             'caddie' => $caddie,
             'nav_categories' => Data::NAV_CATEGORIES,
             'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,
@@ -215,16 +219,18 @@ class DefaultController extends Controller {
     
     public function faq(CaddieService $CaddieService) {
         
+        /* Chargement du caddie en db */
+        
         $id_user = $this->getUser();
         
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);
+        ->loadProductInCaddie($id_user);
         
-        $totalCaddie = $CaddieService->totalCaddie($caddie);
+        $totalcaddie = $CaddieService->totalCaddie($caddie);
         
         return $this->render("faq.html.twig", array ('categories' => Data::CATEGORIES,
-            'total_caddie' => $totalCaddie,
+            'totalcaddie' => $totalcaddie,
             'caddie' => $caddie,
             'nav_categories' => Data::NAV_CATEGORIES,
             'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,
@@ -244,16 +250,18 @@ class DefaultController extends Controller {
     
     public function whishlist(CaddieService $CaddieService) {
         
+        /* Chargement du caddie en db */
+        
         $id_user = $this->getUser();
         
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);
+        ->loadProductInCaddie($id_user);
         
-        $totalCaddie = $CaddieService->totalCaddie($caddie);
+        $totalcaddie = $CaddieService->totalCaddie($caddie);
         
         return $this->render("whishlist.html.twig", array ('categories' => Data::CATEGORIES,
-            'total_caddie' => $totalCaddie,
+            'totalcaddie' => $totalcaddie,
             'caddie' => $caddie,
             'nav_categories' => Data::NAV_CATEGORIES,
             'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,
@@ -273,16 +281,18 @@ class DefaultController extends Controller {
     
     public function aboutUs(CaddieService $CaddieService) {
         
+        /* Chargement du caddie en db */
+        
         $id_user = $this->getUser();
         
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);
+        ->loadProductInCaddie($id_user);
         
-        $totalCaddie = $CaddieService->totalCaddie($caddie);
+        $totalcaddie = $CaddieService->totalCaddie($caddie);
         
         return $this->render("about-us.html.twig", array ('categories' => Data::CATEGORIES,
-            'total_caddie' => $totalCaddie,
+            'totalcaddie' => $totalcaddie,
             'caddie' => $caddie,
             'nav_categories' => Data::NAV_CATEGORIES,
             'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,
@@ -302,16 +312,18 @@ class DefaultController extends Controller {
     
     public function shipingReturn(CaddieService $CaddieService) {
         
+        /* Chargement du caddie en db */
+        
         $id_user = $this->getUser();
         
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);
+        ->loadProductInCaddie($id_user);
         
-        $totalCaddie = $CaddieService->totalCaddie($caddie);
+        $totalcaddie = $CaddieService->totalCaddie($caddie);
         
         return $this->render("shiping-return.html.twig", array ('categories' => Data::CATEGORIES,
-            'total_caddie' => $totalCaddie,
+            'totalcaddie' => $totalcaddie,
             'caddie' => $caddie,
             'nav_categories' => Data::NAV_CATEGORIES,
             'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,
@@ -329,17 +341,19 @@ class DefaultController extends Controller {
     
         public function shipingGuide(CaddieService $CaddieService) {
         
-        $id_user = $this->getUser();
-        
-        $caddie = $this->getDoctrine()
-        ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);
-        
-        $totalCaddie = $CaddieService->totalCaddie($caddie);
+            /* Chargement du caddie en db */
+            
+            $id_user = $this->getUser();
+            
+            $caddie = $this->getDoctrine()
+            ->getRepository(Caddie::class)
+            ->loadProductInCaddie($id_user);
+            
+            $totalcaddie = $CaddieService->totalCaddie($caddie);
         
         
         return $this->render("shiping-guide.html.twig", array ('categories' => Data::CATEGORIES,
-            'total_caddie' => $totalCaddie,
+            'totalcaddie' => $totalcaddie,
             'caddie' => $caddie,
             'nav_categories' => Data::NAV_CATEGORIES,
             'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,

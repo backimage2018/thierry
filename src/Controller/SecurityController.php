@@ -27,10 +27,10 @@ class SecurityController extends Controller
             ->loadUserByUsername($lastUsername);
         
         $caddie = [];
-        $totalCaddie = NULL;
+        $totalcaddie = NULL;
         
         return $this->render('security/login.html.twig', array(
-            'total_caddie' => $totalCaddie,
+            'totalcaddie' => $totalcaddie,
             'caddie' => $caddie,
             'last_username' => $lastUsername,
             'error'         => $error,

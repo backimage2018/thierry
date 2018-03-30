@@ -165,9 +165,11 @@ class StockController extends Controller
             'id' => $id_stock,
         ]);
         
+        // $test = $stock->getStorequantity();
+        
         /* Vérifier si quantity Store n'est < à quantityShop */
         
-        if ($quantityShop < $stock->getStorequantity()) {
+        if ($quantityShop <= $stock->getStorequantity()) {
             
             $stock->setStorequantity($stock->getStorequantity() - $quantityShop);
             $stock->setEshopquantity($stock->getEshopquantity() + $quantityShop);
@@ -175,7 +177,7 @@ class StockController extends Controller
         } else {
             
             
-            $stock = 'Il est possible d\augmenter le stock';
+            $stock = 'Stock insuffisant';
             
             return $this->json($stock);
             
