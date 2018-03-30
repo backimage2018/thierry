@@ -37,8 +37,23 @@ class CaddieController extends Controller
         
         /* On test si la quantité demandé est > à la quantité restante en magasin*/
         
-        $test = $product->getStock()->getEshopquantity();
-        
+        if ($quantity > $product->getStock()->getEshopquantity()) {
+            
+            $result = 'plus de produit';
+            
+            return $this->json($result);
+            
+        } else {
+            
+            /* On soustrait la quantité demandé au stock du magasin */
+            
+            $product->getStock()->setEshopquantity($product->getStock()->getEshopquantity() - $quantity);
+            
+      /*      $em = $this->getDoctrine()->getManager();
+            $em->persist($product);
+            $em->flush(); */
+            
+        }
         
         /* Mettre à jour la table stock du magasin*/
         
@@ -74,28 +89,14 @@ class CaddieController extends Controller
         $em->persist($caddie);
         $em->flush();
         
-     /*   $caddie = $this->getDoctrine()
-        ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);*/
-        
+     
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
         ->loadProductInCaddie($id_user);
         
         $totalcaddie = $CaddieService->totalCaddie($caddie);
         
-   /*     $encoders = new JsonEncoder();
-        $normalizers = new ObjectNormalizer();
-        $normalizers->setCircularReferenceHandler(function($object) {
-            return $object;
-        });
-        $serializer = new Serializer(array($normalizers), array($encoders));
-        
-        $caddie = $serializer->serialize($caddie, 'json'); */
-        
-        
-       // return new Response($caddie);
-       
+
         $caddie = array (
             'items' => $caddie,
             'total-caddie' => $totalcaddie
