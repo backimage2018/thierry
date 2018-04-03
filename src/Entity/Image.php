@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="image")
+ * @ORM\Table(name="thi_image")
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
  */
 class Image

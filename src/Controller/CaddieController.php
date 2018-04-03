@@ -41,9 +41,30 @@ class CaddieController extends Controller
         
         if ($quantity > $product->getStock()->getEshopquantity()) {
             
-            $result = 'plus de produit';
+            $this->addFlash(
+                
+                'warning',
+                'Plus de produit en stock'
+                );
             
-            return $this->json($result);
+            /* On récupère le nouveau caddie mis à jour */
+            
+            $caddie = $this->getDoctrine()
+            ->getRepository(Caddie::class)
+            ->loadProductInCaddie($id_user);
+            
+            $totalcaddie = $CaddieService->totalCaddie($caddie);
+            
+            
+            $caddie = array (
+                'items' => $caddie,
+                'total-caddie' => $totalcaddie
+            );
+            
+            
+            return $this->json($caddie);
+            
+            
             
         } else {
             
@@ -169,7 +190,6 @@ class CaddieController extends Controller
         }
         
        
-        
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
         ->loadProductInCaddie($id_user);

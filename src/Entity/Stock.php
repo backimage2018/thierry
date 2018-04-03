@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="stock")
+ * @ORM\Table(name="thi_stock")
  * @ORM\Entity(repositoryClass="App\Repository\StockRepository")
  */
 class Stock

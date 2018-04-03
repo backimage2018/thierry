@@ -167,6 +167,12 @@ class ProductController extends Controller
             $em->persist($product);
             $em->flush();
             
+            $this->addFlash(
+                
+                'success',
+                'Produit bien mis à jour'
+                );
+            
             return $this->redirectToRoute('update', array('id' => $id));
             
         }

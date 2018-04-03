@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 
 /**
+ * @ORM\Table(name="thi_newsletter")
  * @ORM\Entity(repositoryClass="App\Repository\NewsletterRepository")
  * @ORM\HasLifecycleCallbacks
  */

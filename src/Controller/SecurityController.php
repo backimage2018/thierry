@@ -26,6 +26,8 @@ class SecurityController extends Controller
             ->getRepository(User::class)
             ->loadUserByUsername($lastUsername);
         
+            
+               
         $caddie = [];
         $totalcaddie = NULL;
         

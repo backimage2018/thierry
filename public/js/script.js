@@ -93,6 +93,7 @@ function addProductQuantity(param, quantity) {
 		
 		
 		displayCaddie(response);
+		document.location.reload(true);
 		
 		
 		})

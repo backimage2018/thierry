@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\Collection;
 
 
 /**
- * @ORM\Table(name="product")
+ * @ORM\Table(name="thi_product")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  */

@@ -21,6 +21,9 @@ class StockController extends Controller
      */
     public function homeDashboard()
     {
+        
+        /* Vérification si stock en alerte */
+        
         $stock = $this->getDoctrine()
         ->getRepository(Stock::class)
         ->loadProductsInAlert();
@@ -34,7 +37,9 @@ class StockController extends Controller
                 );
             
         }
+      
         
+        /* On charge tous les produits stock & magasin */
   
         $stock = $this->getDoctrine()
         ->getRepository(Stock::class)

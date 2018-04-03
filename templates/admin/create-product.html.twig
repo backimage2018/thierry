@@ -9,6 +9,12 @@
                                     <h4 class="title">Création /Modification d'un Produit</h4>
                                     
                                 </div>
+                                
+                                <div class="col-md-8">
+                    				{% include 'admin/flashmessage.html.twig' %}
+                    			</div>
+                                
+                                
                                 <div class="card-content">
 {{ form_start(form_product, {'attr': {'class': 'clearfix'}}) }}
 					
@@ -79,10 +85,8 @@
     								{{ form_widget(form_product.image) }}
     							</div>
     							
-    							
+						
     			</div>				
-					
-
 					
 					<div class="col-md-12">
 						<div>
