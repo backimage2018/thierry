@@ -15,11 +15,6 @@ class CheckoutController extends Controller
     
     public function checkout(Request $request, CaddieService $CaddieService) {
         
-        
-        echo '<pre>';
-        var_dump($request->request);
-        echo '</pre>';
-        
         /* Chargement du caddie en db */
         
         $id_user = $this->getUser();

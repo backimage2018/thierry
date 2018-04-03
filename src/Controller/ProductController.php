@@ -107,41 +107,41 @@ class ProductController extends Controller
             
             $image->setUrl($fileName); // On passe l'url (string) dans le l'objet Image
             $product->setImage($image); // On passe l'objet Image dans l'objet Product
-         //   $image->setProduct($product); // On passe l'objet Product dans l'objet Image - Bi directional
-           
+            //   $image->setProduct($product); // On passe l'objet Product dans l'objet Image - Bi directional
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush();
-       
+            
             return $this->redirectToRoute('admin');
-        
+            
         }
         
         return $this->render(
             'admin.html.twig',  array('form_product' => $form->createView(),
-            'totalcaddie' => $totalcaddie,
-            'caddie' => $caddie,
-            'categories' => Data::CATEGORIES,
-            'nav_categories' => Data::NAV_CATEGORIES,
-            'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,
-            'links_footer_customer_service' => Data::LINKS_FOOTER_CUSTOMER_SERVICE,
-            'links_top_nav' => Data::LINKS_TOP_NAV,
-            'languages' => Data::LANGUAGES,
-            'changes' => Data::CHANGES,
-            'socials_networks' => Data::SOCIALS_NETWORKS
+                'totalcaddie' => $totalcaddie,
+                'caddie' => $caddie,
+                'categories' => Data::CATEGORIES,
+                'nav_categories' => Data::NAV_CATEGORIES,
+                'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,
+                'links_footer_customer_service' => Data::LINKS_FOOTER_CUSTOMER_SERVICE,
+                'links_top_nav' => Data::LINKS_TOP_NAV,
+                'languages' => Data::LANGUAGES,
+                'changes' => Data::CHANGES,
+                'socials_networks' => Data::SOCIALS_NETWORKS
                 
             ));
     }
     
-        
+    
     /**
-     * @Route("/admin/{id}", requirements={"id" = "\d+"}, name="update" )
+     * @Route("/dashboard/product/{id}", requirements={"id" = "\d+"}, name="update" )
      */
     
     public function updateProduct(Request $request, $id, FileUploader $fileUploader, CaddieService $CaddieService) {
         
         $param = [];
-   
+        
         $product = $this->getDoctrine()
         ->getRepository(Product::class)
         ->find($id);
@@ -155,14 +155,14 @@ class ProductController extends Controller
         // $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
-               
+        
         if ($form->isSubmitted() && $form->isValid()) {
             
             $file = $product->getImage()->getUrl(); // Fichier physique
             $fileName = $fileUploader->upload($file); // Url du nom du fichier
             
             $product->getImage()->setUrl($fileName);
-                       
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush();
@@ -172,17 +172,8 @@ class ProductController extends Controller
         }
         
         return $this->render(
-            'admin.html.twig',  array('form_product' => $form->createView(),
-                'categories' => Data::CATEGORIES,
-                'nav_categories' => Data::NAV_CATEGORIES,
-                'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,
-                'links_footer_customer_service' => Data::LINKS_FOOTER_CUSTOMER_SERVICE,
-                'links_top_nav' => Data::LINKS_TOP_NAV,
-                'languages' => Data::LANGUAGES,
-                'changes' => Data::CHANGES,
-                'socials_networks' => Data::SOCIALS_NETWORKS
-                
-            ));
+            'admin/create-product.html.twig',
+            array('form_product' => $form->createView()));
     }
     
     /**
@@ -230,8 +221,8 @@ class ProductController extends Controller
     public function getAllProduct(CaddieService $CaddieService)
     {
         $products = $this->getDoctrine()
-            ->getRepository(Product::class)
-            ->findAll();
+        ->getRepository(Product::class)
+        ->findAll();
         
         if (!$products) {
             throw $this->createNotFoundException(
@@ -250,10 +241,10 @@ class ProductController extends Controller
         $totalcaddie = $CaddieService->totalCaddie($caddie);
         
         return $this->render(
-                'products.html.twig',  array(
+            'products.html.twig',  array(
                 'products' => $products,
-                    'totalcaddie' => $totalcaddie,
-                    'caddie' => $caddie,
+                'totalcaddie' => $totalcaddie,
+                'caddie' => $caddie,
                 'categories' => Data::CATEGORIES,
                 'nav_categories' => Data::NAV_CATEGORIES,
                 'links_footer_my_account' => Data::LINKS_FOOTER_MY_ACCOUNT,
@@ -287,9 +278,9 @@ class ProductController extends Controller
         
         
         return $this->render(
-                'products.html.twig',  array(
-                    'totalcaddie' => $totalcaddie,
-                    'caddie' => $caddie,
+            'products.html.twig',  array(
+                'totalcaddie' => $totalcaddie,
+                'caddie' => $caddie,
                 'products' => $products,
                 'categories' => Data::CATEGORIES,
                 'nav_categories' => Data::NAV_CATEGORIES,
@@ -347,7 +338,7 @@ class ProductController extends Controller
      */
     public function getProductsConsumer(CaddieService $CaddieService)
     {
-                
+        
         $products = $this->getDoctrine()
         ->getRepository(Product::class)
         ->findBy(['category' => 'Consumer Electronics']);
@@ -363,9 +354,9 @@ class ProductController extends Controller
         $totalcaddie = $CaddieService->totalCaddie($caddie);
         
         return $this->render(
-                'products.html.twig',  array(
-                    'totalcaddie' => $totalcaddie,
-                    'caddie' => $caddie,
+            'products.html.twig',  array(
+                'totalcaddie' => $totalcaddie,
+                'caddie' => $caddie,
                 'products' => $products,
                 'categories' => Data::CATEGORIES,
                 'nav_categories' => Data::NAV_CATEGORIES,
@@ -428,7 +419,7 @@ class ProductController extends Controller
         ->getRepository(Product::class)
         ->loadProductAndImageById($id);
         
-        return $this->json($detailproduct);
+        return $this->json(['product' => $detailproduct]);
         
     }
 }

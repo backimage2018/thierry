@@ -23,7 +23,22 @@ class StockController extends Controller
     {
         $stock = $this->getDoctrine()
         ->getRepository(Stock::class)
-        ->loadAllProducts();
+        ->loadProductsInAlert();
+        
+        if ($stock != null) {
+            
+            $this->addFlash(
+                
+                'warning',
+                'Attention problème de stock'
+                );
+            
+        }
+        
+  
+        $stock = $this->getDoctrine()
+        ->getRepository(Stock::class)
+        ->loadAllProducts(); 
         
         return $this->render('admin/index.html.twig', array(
             'stock' => $stock));
@@ -132,16 +147,23 @@ class StockController extends Controller
         
         $stock->setStorequantity(($stock->getStorequantity() + $quantityStore));
         
-        /* On persiste le nouvelle objet dans la base */        
+        /* On persiste le nouvelle objet dans la base */
         $em = $this->getDoctrine()->getManager();
         $em->persist($stock);
         $em->flush();
+        
+        $this->addFlash(
+            
+            'success',
+            'Le stock de votre entrepôt à bien été mis à jour.'
+            );
         
         /* On récupére le stock en alerte */
         
         $stock = $this->getDoctrine()
         ->getRepository(Stock::class)
         ->loadProductsInAlert();
+        
         
         return $this->json($stock);
         
@@ -165,17 +187,29 @@ class StockController extends Controller
             'id' => $id_stock,
         ]);
         
-         /* Vérifier si quantity Store est < à quantityShop */
+        /* Vérifier si quantity Store est < à quantityShop */
         
         if ($quantityShop <= $stock->getStorequantity()) {
             
             $stock->setStorequantity($stock->getStorequantity() - $quantityShop);
             $stock->setEshopquantity($stock->getEshopquantity() + $quantityShop);
             
+            $this->addFlash(
+                
+                'success',
+                'Le stock du magasin à bien été mis à jour.'
+                );
+            
         } else {
             
             
             $stock = 'Stock insuffisant';
+            
+            $this->addFlash(
+                
+                'warning',
+                'Vous n\'avez pas assez de stock dans votre entrepôt.'
+                );
             
             return $this->json($stock);
             

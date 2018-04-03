@@ -1,3 +1,10 @@
+$(document).ready(function(){
+	
+	 $('#example').DataTable();
+	
+});
+
+
 
 /*  Ajout stock entrepôt  */
 
@@ -50,6 +57,8 @@ function addQuantityShop(param, quantityShop) {
     
 }
 
+/*  Affiche thumbail lors de l'appui sur le bouton radio  */
+
 function displayProduct(id) {
 	
 	$.ajax({
@@ -59,12 +68,18 @@ function displayProduct(id) {
 	})
 	.done(function (response, textStatus, jqXHR) {
 		
-		//let result = '<img src="../img/' + response[0].image.url +'" id="picture-product" alt="">';
+		console.log(response.product)
 		
+		 
+		let result = '<div class="product product-single"><div class="product-thumb">'
+			result += '<div class="product-label"><span>' + response.product[0].new + '</span><span class="sale">'+ response.product[0].reduction +'</span></div><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>'
+			result += '<img src="../../../img/' + response.product[0].image.url + '" alt=""></div>'
+			result += '<div class="product-body"><h3 class="product-price">$' + response.product[0].price + '<del class="product-old-price">$' + response.product[0].oldprice + '</del></h3>'
+			
+			result += '<h2 class="product-name"><a href="/product/2">' + response.product[0].name + '</a></h2>'
+			result += '</div></div>'
 		
-		let result = '<div id="picture-product">';		
-		result += '<img src="../../../img/' + response[0].image.url + '" class="img-responsive" id="picture-product" alt="">';
-		result += '<div>';
+	
 		
 		$("#picture-product").html(result);
 				

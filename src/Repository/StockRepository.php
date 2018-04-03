@@ -18,6 +18,8 @@ class StockRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('s')
         ->join('s.product', 'p')
         ->addSelect('p')
+        ->join('p.image', 'i')
+        ->addSelect('i')
         ->getQuery()
         ->getArrayResult();
     }

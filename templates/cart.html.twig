@@ -8,7 +8,7 @@
 								</div>
 								<strong class="text-uppercase">My Cart:</strong>
 								<br>
-								<span>{{ totalcaddie }}$</span>
+								<span id="total-caddie">{{ totalcaddie }}$</span>
 							</a>
 							<div class="custom-menu">
 								<div id="shopping-cart">
@@ -23,14 +23,14 @@
 												<h3 class="product-price">${{ item_caddie.product.price}} <span class="qty">x{{ item_caddie.quantity}}</span></h3>
 												<h2 class="product-name"><a href="#">{{ item_caddie.product.name}}</a></h2>
 											</div>
-											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
+											<button class="cancel-btn"><i class="fa fa-trash" id="{{ item_caddie.product.id }}" onclick="deletedProduct(this);"></i></button>
 										</div>
 									{% endfor %}	
 								
 									</div>
 									<div class="shopping-cart-btns">
-										<button class="main-btn">View Cart</button>
-										<button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+										<button class="main-btn"><a href='/viewcart'>View Cart </a></button>
+										<button class="primary-btn"><a href='/checkout'>Checkout</a><i class="fa fa-arrow-circle-right"></i></button>
 									</div>
 								</div>
 							</div>

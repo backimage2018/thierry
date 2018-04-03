@@ -1,18 +1,28 @@
 {% extends "admin/base.html.twig" %}
 
 
-{% block body %}
 
+{% block body %}
+				<div class="col-sm-offset-4 col-md-4">
+				{% include 'admin/flashmessage.html.twig' %}
+				</div>
 				<div class="col-md-12">
+				
                             <div class="card card-plain">
                                 <div class="card-header" data-background-color="purple">
                                     <h4 class="title">Alerte du stock</h4>
-                                    <p class="category">Here is a subtitle for this table</p>
-                                </div>
+                                    
+                                    <p class="category"></p>
+                                    
+                                     
+								</div>
+								
                                 <div class="card-content table-responsive">
+                               
                                     <table class="table table-hover">
                                         <thead>
                                         	<th>Id</th>
+                                        	<th>Picture</th>
                                             <th class="text-center">Name</th>
                                             <th class="text-center">Quantité Restante Entrepôt</th>
                                             <th class="text-center">Quantité Restante Magasin</th>
@@ -23,20 +33,27 @@
                                         {% for item in stock %}
                                             <tr>
                                             	<td>{{ item.product.id}}</td>
+                                            	<td width="5%"><img src="{{ asset('img/' ~ item.product.image.url )}}"></td>
                                             	<td>{{ item.product.name}}</td>
                                             	
                                             	<td class="text-center">
                                             	{% if item.storequantity < 4 %}
 
-                                                       <b>{{ item.storequantity }}</b>
+                                                       <span class="label label-warning">{{ item.storequantity }}</span>
                                                  {% else %}    
                                                           {{ item.storequantity }}
+                                                {% endif %}</td>
+                                                
+                                                <td class="text-center">
+                                            	{% if item.eshopquantity < 4 %}
+
+                                                       <span class="label label-warning">{{ item.eshopquantity }}</span>
+                                                 {% else %}    
+                                                          {{ item.eshopquantity }}
                                                 {% endif %}</td>
                                             	
                                             	
                                             	
-                                            	
-                                                <td class="text-center">{{ item.eshopquantity }}</td>
                                                 
                                                 <td><input id="input-store-{{ item.id }}" type="input"><button type="button" id="{{ item.id }}" onclick="addQuantityStore(this, document.getElementById('input-store-{{ item.id }}').value);" class="btn btn-primary">Ajouter</button></td>
                                                 <td><input id="input-shop-{{ item.id }}" type="input"><button type="button" id="{{ item.id }}" onclick="addQuantityShop(this, document.getElementById('input-shop-{{ item.id }}').value);" class="btn btn-primary">Ajouter</button></td>

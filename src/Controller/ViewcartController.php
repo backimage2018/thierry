@@ -17,15 +17,14 @@ class ViewcartController extends Controller
     public function viewcart(CaddieService $CaddieService) {
         
         $id_user = $this->getUser();
-       
+        
         $caddie = $this->getDoctrine()
         ->getRepository(Caddie::class)
-        ->findBy(['user' => $id_user]);
+        ->loadProductInCaddie($id_user);
+        $totalcaddie = $CaddieService->totalCaddie($caddie);
         
-        $totalCaddie = $CaddieService->totalCaddie($caddie);
-        
-       return $this->render("viewcart.html.twig", array (
-            'total_caddie' => $totalCaddie,
+        return $this->render("viewcart.html.twig", array (
+            'totalcaddie' => $totalcaddie,
             'caddie' => $caddie,
             'categories' => Data::CATEGORIES,
             'nav_categories' => Data::NAV_CATEGORIES,
